@@ -49,7 +49,7 @@ label {
 }
 
 .input-field,
-.input-field-disabled {
+.room-id-copy-container {
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
@@ -58,7 +58,7 @@ label {
     color: var(--text-color);
 }
 
-.input-field-disabled {
+.room-id-copy-container {
     display: flex;
     justify-content: space-between;
 }

@@ -1,0 +1,22 @@
+import React from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { FiCopy } from "react-icons/fi";
+
+const CopyToClipBoard = (props) => {
+    const { value, toastPosition } = props;
+    const handleCopy = () => {
+        navigator.clipboard.writeText(value);
+        toast.success("Copied to Clipboard", {
+            position: toastPosition,
+        });
+    };
+
+    return (
+        <>
+            <Toaster />
+            <FiCopy onClick={handleCopy} cursor="pointer" />
+        </>
+    );
+};
+
+export default CopyToClipBoard;

@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
-import { FiCopy } from "react-icons/fi";
-import "./App.css";
+import CopyToClipBoard from "./Components/CopyToClipBoard/CopyToClipBoard";
 import Room from "./Pages/Room/Room";
+import "./App.css";
 
 const App = () => {
     const [roomId, setRoomId] = useState();
     const [username, setUsername] = useState();
     const [generatedRoomId, setGeneratedRoomId] = useState();
+    const [showRoom, setShowRoom] = useState(false);
 
     const userHasGeneratedRoomId = roomId === generatedRoomId;
-    const [showRoom, setShowRoom] = useState(false);
 
     const handleJoinRoom = (event) => {
         event.preventDefault();
         setShowRoom(true);
     };
 
-    const handleCopy = () => {
-        navigator.clipboard.writeText(roomId);
-        toast.success("Copied to Clipboard");
-    };
-
     const handleCreateRoom = () => {
-        toast.success("Room Created Successfully");
+        toast.success("Room Created Successfully", {
+            position: "top-right",
+        });
         setRoomId(generatedRoomId);
     };
 
@@ -34,9 +31,8 @@ const App = () => {
         }
     }, [generatedRoomId]);
 
-
-    if(showRoom) {
-        return <Room/>;
+    if (showRoom) {
+        return <Room roomId={roomId} />;
     }
 
     return (
@@ -48,9 +44,12 @@ const App = () => {
                 <div className="form-field" st>
                     <label htmlFor="roomId">Room ID:</label>
                     {userHasGeneratedRoomId ? (
-                        <div className="input-field-disabled">
+                        <div className="room-id-copy-container">
                             {roomId}
-                            <FiCopy onClick={handleCopy} cursor="pointer" />
+                            <CopyToClipBoard
+                                value={roomId}
+                                toastPosition="top-right"
+                            />
                         </div>
                     ) : (
                         <input
@@ -82,10 +81,14 @@ const App = () => {
                 {!userHasGeneratedRoomId && (
                     <p>
                         Don't have a Room ID?{" "}
-                        <span className="create-room" onClick={handleCreateRoom}>Create one now</span>
+                        <span
+                            className="create-room"
+                            onClick={handleCreateRoom}
+                        >
+                            Create one now
+                        </span>
                     </p>
                 )}
-                <Toaster position="top-right" />
             </form>
         </div>
     );

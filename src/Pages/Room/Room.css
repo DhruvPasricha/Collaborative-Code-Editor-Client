@@ -2,12 +2,25 @@
     display: flex;
 }
 
+.code-editor {
+    width: 100%;
+}
+
+.right-side-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30vw;
+    min-width: 250px;
+}
+
 .users-container {
-    width: 25vw;
     padding: 25px;
 }
 
-.code-editor {
-    width: 75vw;
+.room-info-container {
+    display: flex;
+    color: white;
+    padding: 10px;
+    text-overflow: ellipsis;
 }
-
