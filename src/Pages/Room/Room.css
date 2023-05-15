@@ -1,26 +1,31 @@
 .room-container {
     display: flex;
+    width: 100%;
 }
 
 .code-editor {
-    width: 100%;
+    width: 75vw;
 }
 
 .right-side-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 30vw;
+    width: 25vw;
     min-width: 250px;
+    padding: 10px;
 }
 
 .users-container {
     padding: 25px;
+    padding-top: 10px;
+    overflow: scroll;
+    max-height: 75vh;
 }
 
 .room-info-container {
     display: flex;
     color: white;
-    padding: 10px;
-    text-overflow: ellipsis;
+    padding: 0 12.5px;
+    justify-content: center;
 }

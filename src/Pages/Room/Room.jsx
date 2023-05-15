@@ -8,7 +8,7 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/snippets/c_cpp";
 import UserAvatar from "../../Components/UserAvatar/UserAvatar";
 import CopyToClipBoard from "../../Components/CopyToClipBoard/CopyToClipBoard";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import "./Room.css";
 
 const Room = (props) => {
@@ -30,25 +30,16 @@ const Room = (props) => {
         });
     }, [user, roomId]);
 
-
     const JoinedUsers = () => {
         return (
             <div className="users-container">
-                <h1
-                    style={{
-                        margin: "10px 0 30px 0",
-                        color: "white",
-                        textAlign: "center",
-                    }}
-                >
-                    Joined Users
-                </h1>
                 <Grid container rowSpacing={4} columnSpacing={4}>
-                    {users && users.map((user) => (
-                        <Grid item xs={3}>
-                            <UserAvatar name={user} />
-                        </Grid>
-                    ))}
+                    {users &&
+                        users.map((user) => (
+                            <Grid item xs={3}>
+                                <UserAvatar name={user} />
+                            </Grid>
+                        ))}
                 </Grid>
             </div>
         );
@@ -91,7 +82,15 @@ const Room = (props) => {
                     className="room-id-copy-container"
                     style={{ width: "100%" }}
                 >
-                    {roomId}
+                    <span
+                        style={{
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                        }}
+                    >
+                        {roomId}
+                    </span>
                     <CopyToClipBoard
                         value={roomId}
                         toastPosition="bottom-right"
@@ -105,7 +104,18 @@ const Room = (props) => {
         <div className="room-container">
             {CodeEditor()}
             <div className="right-side-container">
-                {JoinedUsers()}
+                <div>
+                    <h1
+                        style={{
+                            margin: "10px 0 30px 0",
+                            color: "white",
+                            textAlign: "center",
+                        }}
+                    >
+                        Joined Users
+                    </h1>
+                    {JoinedUsers()}
+                </div>
                 {RoomInfo()}
             </div>
         </div>

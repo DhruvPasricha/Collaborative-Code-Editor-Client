@@ -6,6 +6,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: linear-gradient(to bottom, #0f1218, #1c2331 85%);
+    display: flex;
     height: 100vh;
     overflow: hidden;
 }
@@ -13,4 +14,10 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
