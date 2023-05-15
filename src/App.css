@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+:root {
+    --background-color: #1c2331;
+    --text-color: #ecf0f1;
+    --accent-color: #3498db;
+    --border-color: #2c3e50;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.join-room-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    padding: 40px;
+    margin: 25vh 25vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+    margin: 0;
+    color: var(--accent-color);
 }
 
-.App-link {
-  color: #61dafb;
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.input-field {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+.join-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.join-button:hover {
+    background-color: #2980b9;
+    cursor: pointer;
+}
+
+input,
+button {
+    outline: none;
+}
+
+span {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+p {
+    text-align: center;
 }
