@@ -84,7 +84,7 @@ button {
     outline: none;
 }
 
-span {
+.create-room {
     text-decoration: underline;
     cursor: pointer;
 }

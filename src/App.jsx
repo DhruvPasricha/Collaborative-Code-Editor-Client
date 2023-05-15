@@ -74,7 +74,7 @@ const App = () => {
                 {!userHasGeneratedRoomId && (
                     <p>
                         Don't have a Room ID?{" "}
-                        <span onClick={handleCreateRoom}>Create one now</span>
+                        <span className="create-room" onClick={handleCreateRoom}>Create one now</span>
                     </p>
                 )}
                 <Toaster position="top-right" />
