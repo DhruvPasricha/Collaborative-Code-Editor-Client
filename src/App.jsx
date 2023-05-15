@@ -32,7 +32,7 @@ const App = () => {
     }, [generatedRoomId]);
 
     if (showRoom) {
-        return <Room roomId={roomId} />;
+        return <Room roomId={roomId} user={username}/>;
     }
 
     return (

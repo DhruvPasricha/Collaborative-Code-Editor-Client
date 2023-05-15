@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
 import { Grid } from "@mui/material";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-c_cpp";
@@ -7,24 +8,28 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/snippets/c_cpp";
 import UserAvatar from "../../Components/UserAvatar/UserAvatar";
 import CopyToClipBoard from "../../Components/CopyToClipBoard/CopyToClipBoard";
+import {toast} from "react-hot-toast";
 import "./Room.css";
 
 const Room = (props) => {
     const [value, setValue] = useState();
-    const { roomId } = props;
+    const { roomId, user } = props;
+    const [users, setUsers] = useState();
 
-    const users = [
-        "Samantha",
-        "Alex",
-        "Max",
-        "Liam",
-        "Ella",
-        "Chloe",
-        "Jackson",
-        "Olivia",
-        "Lucas",
-        "Isabella",
-    ];
+    useEffect(() => {
+        if (!user) {
+            return;
+        }
+        const socket = io("http://localhost:4500/");
+        socket.emit("join", { user, roomId });
+        socket.on("updated users", (updatedUsers) => {
+            setUsers(Object.values(updatedUsers));
+        });
+        socket.on("someone has joined", (msg) => {
+            toast(msg);
+        });
+    }, [user, roomId]);
+
 
     const JoinedUsers = () => {
         return (
@@ -39,7 +44,7 @@ const Room = (props) => {
                     Joined Users
                 </h1>
                 <Grid container rowSpacing={4} columnSpacing={4}>
-                    {users.map((user) => (
+                    {users && users.map((user) => (
                         <Grid item xs={3}>
                             <UserAvatar name={user} />
                         </Grid>
