@@ -1,0 +1,13 @@
+.room-container {
+    display: flex;
+}
+
+.users-container {
+    width: 25vw;
+    padding: 25px;
+}
+
+.code-editor {
+    width: 75vw;
+}
+

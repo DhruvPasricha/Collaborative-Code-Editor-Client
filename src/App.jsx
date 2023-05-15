@@ -3,6 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import { FiCopy } from "react-icons/fi";
 import "./App.css";
+import Room from "./Pages/Room/Room";
 
 const App = () => {
     const [roomId, setRoomId] = useState();
@@ -10,9 +11,11 @@ const App = () => {
     const [generatedRoomId, setGeneratedRoomId] = useState();
 
     const userHasGeneratedRoomId = roomId === generatedRoomId;
+    const [showRoom, setShowRoom] = useState(false);
 
     const handleJoinRoom = (event) => {
         event.preventDefault();
+        setShowRoom(true);
     };
 
     const handleCopy = () => {
@@ -30,6 +33,11 @@ const App = () => {
             setGeneratedRoomId(uuidv4());
         }
     }, [generatedRoomId]);
+
+
+    if(showRoom) {
+        return <Room/>;
+    }
 
     return (
         <div className="join-room-container">

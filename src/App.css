@@ -14,7 +14,7 @@
     color: var(--text-color);
     border-radius: 10px;
     padding: 40px;
-    margin: 25vh 25vw;
+    margin: 25vh 30vw;
 }
 
 .header {
@@ -27,7 +27,7 @@
 
 h1 {
     margin: 0;
-    color: var(--accent-color);
+    color: var(--text-color);
 }
 
 form {
@@ -45,7 +45,7 @@ form {
 label {
     margin-bottom: 5px;
     font-weight: bold;
-    color: var(--accent-color);
+    color: var(--text-color);
 }
 
 .input-field,
@@ -65,17 +65,19 @@ label {
 
 .join-button {
     padding: 10px;
-    border: none;
+    border: 0.01px solid whitesmoke;
     border-radius: 5px;
-    background-color: var(--accent-color);
-    color: var(--text-color);
+    background-color: var(--text-color);
+    color: var(--background-color);
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
 
 .join-button:hover {
-    background-color: #2980b9;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border: 0.01px solid whitesmoke;
     cursor: pointer;
 }
 
