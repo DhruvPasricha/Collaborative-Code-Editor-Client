@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 
-const SOCKET_URL = "http://localhost:5000/";
+const SOCKET_URL = "https://code-editor-2-f9my.onrender.com";
 
 const DEFAULT_SOCKET_OPTIONS = {
   transports: ["websocket"],
