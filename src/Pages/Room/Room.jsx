@@ -73,6 +73,7 @@ const Room = ({ roomId, user, socket }) => {
 
         join();
         addSocketEventListeners();
+        // eslint-disable-next-line
     }, []);
 
     const handleBodyChange = (newValue) => {
