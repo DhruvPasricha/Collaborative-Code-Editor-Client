@@ -54,9 +54,16 @@ const Room = ({ roomId, user, socket }) => {
             socket.on("updated users", (updatedUsers) => {
                 setUsers(Object.values(updatedUsers));
             });
-            socket.on("someone has joined", (msg) => {
-                toast.success(msg, {
-                    position: "bottom-right",
+            socket.on("someone joined", (msg) => {
+                toast(msg, {
+                    position: "top-right",
+                    icon: "🥳",
+                });
+            });
+            socket.on("someone left", (msg) => {
+                toast(msg, {
+                    position: "top-right",
+                    icon: "🙁",
                 });
             });
             socket.on("updated code", ({ updatedCode }) => {
