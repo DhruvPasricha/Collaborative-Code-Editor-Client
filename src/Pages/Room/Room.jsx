@@ -71,7 +71,7 @@ const Room = ({ roomId, user, socket }) => {
     const handleBodyChange = (newValue) => {
         setBody(newValue);
         socket.emit("code change", {
-            value: body,
+            value: newValue,
             roomId,
             user,
         });
