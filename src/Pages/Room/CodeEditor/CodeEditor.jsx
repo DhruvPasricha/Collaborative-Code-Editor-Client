@@ -5,12 +5,15 @@ import "ace-builds/src-noconflict/theme-dracula";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/snippets/c_cpp";
 
-const CodeEditor = ( { handleBodyChange, value }) => {
+const CodeEditor = ({ handleBodyChange, value }) => {
     return (
         <div className="code-editor">
             <AceEditor
                 mode="c_cpp"
                 theme="dracula"
+                onLoad={(editor) => {
+                    editor.focus();
+                }}
                 onChange={(newValue) => handleBodyChange(newValue)}
                 value={value}
                 setOptions={{
