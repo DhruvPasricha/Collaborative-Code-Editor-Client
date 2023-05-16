@@ -51,6 +51,12 @@ const Room = ({ roomId, user, socket }) => {
         };
 
         const addSocketEventListeners = () => {
+            socket.on("welcome", (msg) => {
+                toast(msg, {
+                    position: "top-right",
+                    icon: "👋",
+                });
+            });
             socket.on("updated users", (updatedUsers) => {
                 setUsers(Object.values(updatedUsers));
             });
