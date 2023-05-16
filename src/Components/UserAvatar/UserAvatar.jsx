@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar } from "@mui/material";
+import { Avatar, Tooltip } from "@mui/material";
 
 const stringToColor = (string) => {
     let hash = 0;
@@ -28,7 +28,11 @@ const stringAvatar = (name) => {
 
 const UserAvatar = (props) => {
     const { name } = props;
-    return <Avatar {...stringAvatar(name)} />;
+    return (
+        <Tooltip title={name} arrow>
+            <Avatar {...stringAvatar(name.toUpperCase())} />
+        </Tooltip>
+    );
 };
 
 export default UserAvatar;

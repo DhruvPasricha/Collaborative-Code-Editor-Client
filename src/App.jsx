@@ -1,38 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import CopyToClipBoard from "./Components/CopyToClipBoard/CopyToClipBoard";
 import Room from "./Pages/Room/Room";
 import "./App.css";
+import createSocket from "./Util/Socket";
 
-const App = () => {
-    const [roomId, setRoomId] = useState();
-    const [username, setUsername] = useState();
-    const [generatedRoomId, setGeneratedRoomId] = useState();
-    const [showRoom, setShowRoom] = useState(false);
+const socket = createSocket();
+const generatedRoomId = uuidv4();
+
+const App = React.memo(() => {
+    const [{ roomId, username, showRoom }, setState] = useState({
+        roomId: "",
+        username: "",
+        showRoom: false,
+    });
 
     const userHasGeneratedRoomId = roomId === generatedRoomId;
 
     const handleJoinRoom = (event) => {
         event.preventDefault();
-        setShowRoom(true);
+        setState((prevState) => ({ ...prevState, showRoom: true }));
     };
 
     const handleCreateRoom = () => {
         toast.success("Room Created Successfully", {
             position: "top-right",
         });
-        setRoomId(generatedRoomId);
+        setState((prevState) => ({ ...prevState, roomId: generatedRoomId }));
     };
 
-    useEffect(() => {
-        if (!generatedRoomId) {
-            setGeneratedRoomId(uuidv4());
-        }
-    }, [generatedRoomId]);
-
     if (showRoom) {
-        return <Room roomId={roomId} user={username}/>;
+        return <Room roomId={roomId} user={username} socket={socket} />;
     }
 
     return (
@@ -41,7 +40,7 @@ const App = () => {
                 <h1>Join a Room</h1>
             </div>
             <form onSubmit={handleJoinRoom}>
-                <div className="form-field" st>
+                <div className="form-field">
                     <label htmlFor="roomId">Room ID:</label>
                     {userHasGeneratedRoomId ? (
                         <div className="room-id-copy-container">
@@ -56,7 +55,12 @@ const App = () => {
                             type="text"
                             id="roomId"
                             value={roomId}
-                            onChange={(event) => setRoomId(event.target.value)}
+                            onChange={(event) =>
+                                setState((prevState) => ({
+                                    ...prevState,
+                                    roomId: event.target.value,
+                                }))
+                            }
                             className="input-field"
                             required
                             autoComplete="off"
@@ -69,7 +73,12 @@ const App = () => {
                         type="text"
                         id="username"
                         value={username}
-                        onChange={(event) => setUsername(event.target.value)}
+                        onChange={(event) =>
+                            setState((prevState) => ({
+                                ...prevState,
+                                username: event.target.value,
+                            }))
+                        }
                         className="input-field"
                         required
                         autoComplete="off"
@@ -92,6 +101,6 @@ const App = () => {
             </form>
         </div>
     );
-};
+});
 
 export default App;

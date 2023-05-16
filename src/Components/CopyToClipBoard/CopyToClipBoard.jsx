@@ -1,5 +1,5 @@
 import React from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { FiCopy } from "react-icons/fi";
 
 const CopyToClipBoard = (props) => {
@@ -11,12 +11,7 @@ const CopyToClipBoard = (props) => {
         });
     };
 
-    return (
-        <>
-            <Toaster />
-            <FiCopy onClick={handleCopy} cursor="pointer" />
-        </>
-    );
+    return <FiCopy onClick={handleCopy} cursor="pointer" />;
 };
 
 export default CopyToClipBoard;
