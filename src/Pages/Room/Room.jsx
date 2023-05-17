@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button, Grid } from "@mui/material";
 import UserAvatar from "../../Components/UserAvatar/UserAvatar";
 import CopyToClipBoard from "../../Components/CopyToClipBoard/CopyToClipBoard";
 import { toast } from "react-hot-toast";
 import CodeEditor from "./CodeEditor/CodeEditor";
 import "./Room.css";
+import { UserContext, socket } from "../../App";
 
 const JoinedUsers = ({ users }) => {
     return (
@@ -42,6 +44,7 @@ const RoomInfo = ({ roomId }) => {
 };
 
 const LeaveRoomButton = () => {
+    const navigate = useNavigate();
     return (
         <Button
             variant="contained"
@@ -52,13 +55,19 @@ const LeaveRoomButton = () => {
                 },
                 textTransform: "none",
             }}
+            onClick={() => navigate("/")}
         >
             Leave Room
         </Button>
     );
 };
 
-const Room = ({ roomId, user, socket }) => {
+const Room = () => {
+    const { username: user } = useContext(UserContext);
+
+    const params = useParams();
+    const { roomId } = params;
+
     const [body, setBody] = useState("");
     const [users, setUsers] = useState([]);
 
