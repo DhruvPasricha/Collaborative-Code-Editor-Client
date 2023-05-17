@@ -73,6 +73,7 @@ const JoinRoom = () => {
                         className="input-field"
                         required
                         autoComplete="off"
+                        autoFocus={roomId}
                     />
                 </div>
                 <button type="submit" className="join-button">

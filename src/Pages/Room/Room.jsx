@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Button, Grid } from "@mui/material";
 import UserAvatar from "../../Components/UserAvatar/UserAvatar";
 import CopyToClipBoard from "../../Components/CopyToClipBoard/CopyToClipBoard";
@@ -99,7 +99,7 @@ const Room = () => {
     };
 
     const LeaveRoomButton = () => {
-        const navigate = useNavigate();
+
         return (
             <Button
                 variant="contained"
@@ -112,7 +112,8 @@ const Room = () => {
                 }}
                 onClick={() => {
                     socket.emit("leave", { user, roomId });
-                    navigate("/");
+                    toast.remove();
+                    window.location.href = "/";
                 }}
             >
                 Leave Room
