@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import UserAvatar from "../../Components/UserAvatar/UserAvatar";
 import CopyToClipBoard from "../../Components/CopyToClipBoard/CopyToClipBoard";
 import { toast } from "react-hot-toast";
@@ -38,6 +38,23 @@ const RoomInfo = ({ roomId }) => {
                 <CopyToClipBoard value={roomId} toastPosition="bottom-right" />
             </div>
         </div>
+    );
+};
+
+const LeaveRoomButton = () => {
+    return (
+        <Button
+            variant="contained"
+            sx={{
+                backgroundColor: "#F44336",
+                "&:hover": {
+                    backgroundColor: "#D32F2F",
+                },
+                textTransform: "none",
+            }}
+        >
+            Leave Room
+        </Button>
     );
 };
 
@@ -96,7 +113,17 @@ const Room = ({ roomId, user, socket }) => {
             <CodeEditor handleBodyChange={handleBodyChange} value={body} />
             <div className="right-side-container">
                 <JoinedUsers users={users} />
-                <RoomInfo roomId={roomId} />
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        flexDirection: "column",
+                        gap: "2vh",
+                    }}
+                >
+                    <RoomInfo roomId={roomId} />
+                    <LeaveRoomButton />
+                </div>
             </div>
         </div>
     );
