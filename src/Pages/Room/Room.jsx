@@ -43,25 +43,6 @@ const RoomInfo = ({ roomId }) => {
     );
 };
 
-const LeaveRoomButton = () => {
-    const navigate = useNavigate();
-    return (
-        <Button
-            variant="contained"
-            sx={{
-                backgroundColor: "#F44336",
-                "&:hover": {
-                    backgroundColor: "#D32F2F",
-                },
-                textTransform: "none",
-            }}
-            onClick={() => navigate("/")}
-        >
-            Leave Room
-        </Button>
-    );
-};
-
 const Room = () => {
     const { username: user } = useContext(UserContext);
 
@@ -115,6 +96,28 @@ const Room = () => {
             roomId,
             user,
         });
+    };
+
+    const LeaveRoomButton = () => {
+        const navigate = useNavigate();
+        return (
+            <Button
+                variant="contained"
+                sx={{
+                    backgroundColor: "#F44336",
+                    "&:hover": {
+                        backgroundColor: "#D32F2F",
+                    },
+                    textTransform: "none",
+                }}
+                onClick={() => {
+                    socket.emit("leave", { user, roomId });
+                    navigate("/");
+                }}
+            >
+                Leave Room
+            </Button>
+        );
     };
 
     return (
