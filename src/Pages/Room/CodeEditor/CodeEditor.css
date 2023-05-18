@@ -4,14 +4,20 @@
     color: var(--text-color);
 }
 
+.code-editor-header {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to left, #0f1218, #1c2331 85%);
+    height: 15vh;
+    padding: 10px;
+}
+
 .action-items {
     display: flex;
     justify-content: space-between;
     height: 5vh;
     padding: 10px 20px;
     font-weight: bolder;
-    border: 1px solid #0f1722; /* set the border color */
-    box-shadow: 0 0 3px rgba(14, 2, 2, 0.3), inset 0 0 3px rgba(0, 0, 0, 0.3); /* create a 3D effect */
 }
 
 .custom-textarea {
@@ -33,9 +39,19 @@ textarea {
     outline: none;
     background-color: unset;
     color: unset;
-    border: 1px solid #0f1722; /* set the border color */
-    box-shadow: 0 0 3px rgba(14, 2, 2, 0.3), inset 0 0 3px rgba(0, 0, 0, 0.3); /* create a 3D effect */
     padding: 20px;
     padding-bottom: 5px;
     height: 100%;
+}
+
+textarea,
+.code-editor-header,
+.action-items {
+    border: 1px solid #0f1722;
+    box-shadow: 0 0 3px rgba(14, 2, 2, 0.3), inset 0 0 3px rgba(0, 0, 0, 0.3); /* create a 3D effect */
+}
+
+.MuiSelect-iconOutlined,
+.Mui-focused {
+    color: var(--text-color) !important;
 }
