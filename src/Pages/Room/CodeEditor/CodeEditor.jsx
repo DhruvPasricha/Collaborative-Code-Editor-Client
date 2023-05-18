@@ -1,5 +1,17 @@
 import React, { useState } from "react";
 import AceEditor from "react-ace";
+import Console from "./Console/Console";
+import "./CodeEditor.css";
+import SelectDropDown from "../../../Components/SelectDropDown/SelectDropDown";
+import {
+    fontSizes,
+    getLanguageDisplayNameFromMode,
+    languages,
+    themes,
+} from "./Constants";
+import { dashCaseToPascalCaseWithSpaces } from "../../../Util/StringConversions";
+
+// themes
 import "ace-builds/src-noconflict/theme-chaos";
 import "ace-builds/src-noconflict/theme-cobalt";
 import "ace-builds/src-noconflict/theme-dracula";
@@ -13,23 +25,41 @@ import "ace-builds/src-noconflict/theme-tomorrow_night_blue";
 import "ace-builds/src-noconflict/theme-tomorrow_night_eighties";
 import "ace-builds/src-noconflict/theme-tomorrow_night";
 import "ace-builds/src-noconflict/theme-xcode";
-import "ace-builds/src-noconflict/mode-c_cpp";
-import "ace-builds/src-noconflict/ext-language_tools";
-import "ace-builds/src-noconflict/snippets/c_cpp";
-import Console from "./Console/Console";
-import "./CodeEditor.css";
-import SelectDropDown from "../../../Components/SelectDropDown/SelectDropDown";
-import { fontSizes, themes } from "./Constants";
-import { dashCaseToPascalCaseWithSpaces } from "../../../Util/StringConversions";
 
-const Header = ({ fontSize, setFontSize, theme, setTheme }) => {
+// languages
+import "ace-builds/src-noconflict/mode-c_cpp";
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-kotlin";
+
+// snippets
+import "ace-builds/src-noconflict/snippets/c_cpp";
+import "ace-builds/src-noconflict/snippets/java";
+import "ace-builds/src-noconflict/snippets/javascript";
+import "ace-builds/src-noconflict/snippets/python";
+import "ace-builds/src-noconflict/snippets/kotlin";
+
+// ext tools
+import "ace-builds/src-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/ext-beautify";
+
+const Header = ({
+    fontSize,
+    setFontSize,
+    theme,
+    setTheme,
+    language,
+    setLanguage,
+}) => {
     return (
         <div className="code-editor-header">
             <SelectDropDown
-                value={fontSize}
-                setValue={setFontSize}
-                label="Font Size"
-                values={fontSizes}
+                value={language}
+                setValue={setLanguage}
+                label="Language"
+                values={languages}
+                mappingFunction={getLanguageDisplayNameFromMode}
             />
             <SelectDropDown
                 value={theme}
@@ -38,6 +68,12 @@ const Header = ({ fontSize, setFontSize, theme, setTheme }) => {
                 values={themes}
                 mappingFunction={dashCaseToPascalCaseWithSpaces}
             />
+            <SelectDropDown
+                value={fontSize}
+                setValue={setFontSize}
+                label="Font Size"
+                values={fontSizes}
+            />
         </div>
     );
 };
@@ -45,6 +81,7 @@ const Header = ({ fontSize, setFontSize, theme, setTheme }) => {
 const CodeEditor = ({ handleBodyChange, value }) => {
     const [fontSize, setFontSize] = useState(16);
     const [theme, setTheme] = useState("github_dark");
+    const [language, setLanguage] = useState("c_cpp");
 
     return (
         <div className="code-editor">
@@ -53,6 +90,8 @@ const CodeEditor = ({ handleBodyChange, value }) => {
                 setFontSize={setFontSize}
                 theme={theme}
                 setTheme={setTheme}
+                language={language}
+                setLanguage={setLanguage}
             />
             <div
                 style={{
@@ -62,7 +101,7 @@ const CodeEditor = ({ handleBodyChange, value }) => {
                 }}
             >
                 <AceEditor
-                    mode="c_cpp"
+                    mode={language}
                     theme={theme}
                     onLoad={(editor) => {
                         editor.focus();
@@ -77,6 +116,7 @@ const CodeEditor = ({ handleBodyChange, value }) => {
                         tabSize: 4,
                         highlightActiveLine: false,
                         hScrollBarAlwaysVisible: false,
+                        useWorker: false
                     }}
                     fontSize={fontSize}
                     showPrintMargin={false}

@@ -10,6 +10,7 @@
     background: linear-gradient(to left, #0f1218, #1c2331 85%);
     height: 15vh;
     padding: 10px;
+    justify-content: flex-end;
 }
 
 .action-items {

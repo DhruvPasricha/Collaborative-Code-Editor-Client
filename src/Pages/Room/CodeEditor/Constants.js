@@ -15,3 +15,16 @@ export const themes = [
     "tomorrow_night",
     "xcode",
 ];
+
+export const languages = ["c_cpp", "java", "javascript", "python", "kotlin"];
+
+export const getLanguageDisplayNameFromMode = (language) => {
+    const map = {
+        c_cpp: "C++",
+        java: "Java",
+        javascript: "JavaScript",
+        python: "Python",
+        kotlin: "Kotlin",
+    };
+    return map[language];
+};
