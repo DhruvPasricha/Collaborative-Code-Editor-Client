@@ -1,40 +1,50 @@
 import React, { useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Resizable } from "re-resizable";
+import { Button } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import "./CodeEditor.css";
 
+const CustomTextArea = ({ heading, textAreaProps }) => {
+    return (
+        <div className="custom-textarea">
+            <span
+                style={{
+                    border: "1px 0 0 0 solid #0f1722",
+                    boxShadow:
+                        "0 0 3px rgba(14, 2, 2, 0.3), inset 0 0 3px rgba(0, 0, 0, 0.3)",
+                    padding: "20px"
+                }}
+            >
+                {heading}
+            </span>
+            <textarea {...textAreaProps} />
+        </div>
+    );
+};
+
 const InputOutputContainer = ({ inputText, setInputText, outputText }) => {
     return (
-        <div className="input-output-container">
-            <textarea
-                placeholder="Input"
-                value={inputText}
-                onChange={(event) => setInputText(event.target.value)}
-                style={{
-                    resize: "none",
-                    outline: "none",
-                    backgroundColor: "unset",
-                    color: "unset",
-                    border: "unset",
-                    width: "100%",
+        <Resizable
+            className="input-output-container"
+            defaultSize={{ height: "30vh" }}
+        >
+            <CustomTextArea
+                heading="Input"
+                textAreaProps={{
+                    value: inputText,
+                    onChange: (event) => setInputText(event.target.value),
                 }}
             />
-            <textarea
-                placeholder="Output"
-                value={outputText}
-                style={{
-                    resize: "none",
-                    outline: "none",
-                    backgroundColor: "unset",
-                    color: "unset",
-                    border: "unset",
-                    width: "100%",
+            <CustomTextArea
+                heading="Output"
+                textAreaProps={{
+                    value: outputText,
+                    readOnly: true,
                 }}
-                readOnly
             />
-        </div>
+        </Resizable>
     );
 };
 
@@ -68,9 +78,9 @@ const Console = () => {
                 >
                     Console
                     {isExpanded ? (
-                        <KeyboardArrowUpIcon />
-                    ) : (
                         <KeyboardArrowDownIcon />
+                        ) : (
+                        <KeyboardArrowUpIcon />
                     )}
                 </Button>
                 <Button
