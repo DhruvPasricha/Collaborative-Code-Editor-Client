@@ -4,6 +4,8 @@ import "ace-builds/src-noconflict/mode-c_cpp";
 import "ace-builds/src-noconflict/theme-dracula";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/snippets/c_cpp";
+import Console from "./Console";
+import "./CodeEditor.css";
 
 const CodeEditor = ({ handleBodyChange, value }) => {
     return (
@@ -29,9 +31,10 @@ const CodeEditor = ({ handleBodyChange, value }) => {
                 showPrintMargin={false}
                 showGutter={true}
                 highlightActiveLine={false}
-                height="100vh"
+                height="100%"
                 width="100%"
             />
+            <Console />
         </div>
     );
 };
