@@ -1,15 +1,57 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import "./CodeEditor.css";
 
+const InputOutputContainer = ({ inputText, setInputText, outputText }) => {
+    return (
+        <div className="input-output-container">
+            <textarea
+                placeholder="Input"
+                value={inputText}
+                onChange={(event) => setInputText(event.target.value)}
+                style={{
+                    resize: "none",
+                    outline: "none",
+                    backgroundColor: "unset",
+                    color: "unset",
+                    border: "unset",
+                    width: "100%",
+                }}
+            />
+            <textarea
+                placeholder="Output"
+                value={outputText}
+                style={{
+                    resize: "none",
+                    outline: "none",
+                    backgroundColor: "unset",
+                    color: "unset",
+                    border: "unset",
+                    width: "100%",
+                }}
+                readOnly
+            />
+        </div>
+    );
+};
+
 const Console = () => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [inputText, setInputText] = useState("");
+    const [outputText, setOutputText] = useState("");
 
     return (
         <div className="console">
+            {isExpanded && (
+                <InputOutputContainer
+                    inputText={inputText}
+                    setInputText={setInputText}
+                    outputText={outputText}
+                />
+            )}
             <div className="action-items">
                 <Button
                     variant="text"
