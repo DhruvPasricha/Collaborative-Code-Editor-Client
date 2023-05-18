@@ -4,7 +4,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 
-const SelectDropDown = ({ value, label, setValue, values }) => {
+const SelectDropDown = ({
+    value,
+    label,
+    setValue,
+    values,
+    mappingFunction,
+}) => {
     return (
         <FormControl sx={{ width: "150px" }}>
             <InputLabel
@@ -36,7 +42,7 @@ const SelectDropDown = ({ value, label, setValue, values }) => {
             >
                 {values.map((v) => (
                     <MenuItem key={v} value={v}>
-                        {v}
+                        {mappingFunction ? mappingFunction(v) : v}
                     </MenuItem>
                 ))}
             </Select>
