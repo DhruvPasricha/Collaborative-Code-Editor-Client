@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import "./CodeEditor.css";
+import "../CodeEditor.css";
 
 const CustomTextArea = ({ heading, textAreaProps }) => {
     return (
