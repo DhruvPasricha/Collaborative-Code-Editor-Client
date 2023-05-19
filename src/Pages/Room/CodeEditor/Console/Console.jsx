@@ -51,7 +51,7 @@ const Console = ({ language, body }) => {
     const [status, setStatus] = useState("completed");
 
     const handleCodeExecution = async () => {
-        const baseUrl = "http://api.paiza.io";
+        const baseUrl = "https://api.paiza.io";
 
         const getDetails = async (executionId) => {
             try {
