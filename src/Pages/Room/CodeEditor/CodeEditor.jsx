@@ -56,7 +56,7 @@ const Header = ({
                 setValue={setLanguage}
                 label="Language"
                 values={Object.keys(languages)}
-                mappingFunction={(language) => languages[language].name}
+                mappingFunction={(language) => languages[language].displayName}
             />
             <SelectDropDown
                 value={theme}
@@ -116,7 +116,7 @@ const CodeEditor = ({ handleBodyChange, value }) => {
                     height="100%"
                     width="100%"
                 />
-                <Console />
+                <Console language={language} body={value} />
             </div>
         </div>
     );

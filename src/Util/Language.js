@@ -1,6 +1,6 @@
 export default class Language {
-    constructor(name, extension) {
-        this.name = name;
-        this.extension = extension;
+    constructor(displayName, compilerName) {
+        this.displayName = displayName;
+        this.compilerName = compilerName;
     }
 }
