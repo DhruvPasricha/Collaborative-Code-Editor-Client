@@ -22,7 +22,6 @@
 .action-items {
     display: flex;
     justify-content: space-between;
-    height: 5vh;
     padding: 10px 20px;
     font-weight: bolder;
 }

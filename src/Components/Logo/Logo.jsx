@@ -4,9 +4,9 @@ import "./Logo.css";
 
 const Logo = () => {
     return (
-        <div class="logo">
-            <SettingsEthernetIcon sx={{ fontSize: "xxx-large" }} />
-            CODEONE
+        <div className="logo">
+            <SettingsEthernetIcon sx={{ fontSize: "inherit !important" }} />
+            <span>CODEONE</span>
         </div>
     );
 };

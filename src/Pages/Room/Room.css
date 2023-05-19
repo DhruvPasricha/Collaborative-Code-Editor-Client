@@ -22,7 +22,6 @@
 .users-container {
     padding: 25px;
     padding-top: 10px;
-    overflow: scroll;
     max-height: 75vh;
 }
 

@@ -17,6 +17,7 @@
     margin: 20vh 5vw;
     width: 35vw;
     min-width: 300px;
+    min-height: 100%;
 }
 
 .header {
