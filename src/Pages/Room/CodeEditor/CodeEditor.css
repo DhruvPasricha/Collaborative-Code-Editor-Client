@@ -8,15 +8,15 @@
     display: flex;
     align-items: center;
     background: linear-gradient(to left, #0f1218, #1c2331 85%);
-    height: 15vh;
-    padding: 10px;
+    height: fit-content;
+    padding: 20px;
     justify-content: space-between;
 }
 
 .ide {
     display: flex;
     flex-direction: column;
-    height: 85vh;
+    height: 100vh;
 }
 
 .action-items {

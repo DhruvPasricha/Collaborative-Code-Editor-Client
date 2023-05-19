@@ -12,7 +12,7 @@ const SelectDropDown = ({
     mappingFunction,
 }) => {
     return (
-        <FormControl sx={{ width: "150px" }}>
+        <FormControl sx={{ width: "150px", fontSize: "14px" }}>
             <InputLabel
                 sx={{ color: "var(--text-color)", textAlign: "center" }}
             >
@@ -41,6 +41,7 @@ const SelectDropDown = ({
                         },
                     },
                     color: "inherit",
+                    fontSize: "14px",
                 }}
             >
                 {values.map((v) => (
