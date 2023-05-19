@@ -7,11 +7,16 @@ import { toast } from "react-hot-toast";
 import CodeEditor from "./CodeEditor/CodeEditor";
 import "./Room.css";
 import { UserContext, socket } from "../../App";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const JoinedUsers = ({ users }) => {
     return (
         <div className="users-container">
-            <h1 className="joined-users-header"> Joined Users </h1>
+            <h1 className="joined-users-header">
+                {" "}
+                {`Participants (${users.length})`}{" "}
+            </h1>
             <Grid container rowSpacing={4} columnSpacing={4}>
                 {users &&
                     users.map((user, index) => (
@@ -99,7 +104,6 @@ const Room = () => {
     };
 
     const LeaveRoomButton = () => {
-
         return (
             <Button
                 variant="contained"
@@ -120,6 +124,20 @@ const Room = () => {
             </Button>
         );
     };
+
+    if (!users.length) {
+        return (
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    color: "var(--text-color)",
+                }}
+            >
+                <CircularProgress color="inherit" />
+            </Box>
+        );
+    }
 
     return (
         <div className="room-container">
