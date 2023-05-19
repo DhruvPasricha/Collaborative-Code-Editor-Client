@@ -26,6 +26,9 @@ const SelectDropDown = ({
                     setValue(event.target.value);
                 }}
                 sx={{
+                    "& .MuiSelect-select": {
+                        paddingBottom: "0",
+                    },
                     "& .MuiOutlinedInput-notchedOutline": {
                         border: "none",
                     },

@@ -1,3 +1,13 @@
+import Language from "../../../Util/Language";
+
+export const languages = {
+    c_cpp: new Language("C++"),
+    java: new Language("Java"),
+    javascript: new Language("JavaScript"),
+    python: new Language("Python"),
+    kotlin: new Language("Kotlin"),
+};
+
 export const fontSizes = [12, 14, 16, 18, 20, 22, 24];
 
 export const themes = [
@@ -15,16 +25,3 @@ export const themes = [
     "tomorrow_night",
     "xcode",
 ];
-
-export const languages = ["c_cpp", "java", "javascript", "python", "kotlin"];
-
-export const getLanguageDisplayNameFromMode = (language) => {
-    const map = {
-        c_cpp: "C++",
-        java: "Java",
-        javascript: "JavaScript",
-        python: "Python",
-        kotlin: "Kotlin",
-    };
-    return map[language];
-};

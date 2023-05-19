@@ -9,16 +9,7 @@ import "../CodeEditor.css";
 const CustomTextArea = ({ heading, textAreaProps }) => {
     return (
         <div className="custom-textarea">
-            <span
-                style={{
-                    border: "1px 0 0 0 solid #0f1722",
-                    boxShadow:
-                        "0 0 3px rgba(14, 2, 2, 0.3), inset 0 0 3px rgba(0, 0, 0, 0.3)",
-                    padding: "20px"
-                }}
-            >
-                {heading}
-            </span>
+            <span className="custom-textarea-heading">{heading}</span>
             <textarea {...textAreaProps} />
         </div>
     );
@@ -29,12 +20,15 @@ const InputOutputContainer = ({ inputText, setInputText, outputText }) => {
         <Resizable
             className="input-output-container"
             defaultSize={{ height: "30vh" }}
+            bounds="parent"
+            enable={{ top: true }}
         >
             <CustomTextArea
                 heading="Input"
                 textAreaProps={{
                     value: inputText,
                     onChange: (event) => setInputText(event.target.value),
+                    autoFocus: true,
                 }}
             />
             <CustomTextArea
@@ -76,26 +70,28 @@ const Console = () => {
                     }}
                     onClick={() => setIsExpanded(!isExpanded)}
                 >
-                    Console
+                    Console{" "}
                     {isExpanded ? (
                         <KeyboardArrowDownIcon />
-                        ) : (
+                    ) : (
                         <KeyboardArrowUpIcon />
                     )}
                 </Button>
-                <Button
-                    variant="contained"
-                    sx={{
-                        backgroundColor: "#23964A",
-                        "&:hover": {
-                            backgroundColor: "#1E7E3C",
-                        },
-                        textTransform: "none",
-                    }}
-                >
-                    Compile and Run
-                    <PlayArrowIcon />
-                </Button>
+                {isExpanded && (
+                    <Button
+                        variant="contained"
+                        sx={{
+                            backgroundColor: "#23964A",
+                            "&:hover": {
+                                backgroundColor: "#1E7E3C",
+                            },
+                            textTransform: "none",
+                        }}
+                    >
+                        Compile and Run
+                        <PlayArrowIcon />
+                    </Button>
+                )}
             </div>
         </div>
     );

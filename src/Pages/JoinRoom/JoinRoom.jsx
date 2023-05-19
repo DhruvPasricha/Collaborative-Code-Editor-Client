@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import CopyToClipBoard from "../../Components/CopyToClipBoard/CopyToClipBoard";
 import { UserContext } from "../../App";
 import "./JoinRoom.css";
+import Logo from "../../Components/Logo/Logo";
 
 const generatedRoomId = uuidv4();
 
@@ -38,7 +39,7 @@ const JoinRoom = () => {
     return (
         <div className="join-room-container">
             <div className="header">
-                <h1>Join a Room</h1>
+                <Logo />
             </div>
             <form onSubmit={handleJoinRoom}>
                 <div className="form-field">

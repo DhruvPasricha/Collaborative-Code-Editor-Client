@@ -3,12 +3,7 @@ import AceEditor from "react-ace";
 import Console from "./Console/Console";
 import "./CodeEditor.css";
 import SelectDropDown from "../../../Components/SelectDropDown/SelectDropDown";
-import {
-    fontSizes,
-    getLanguageDisplayNameFromMode,
-    languages,
-    themes,
-} from "./Constants";
+import { fontSizes, languages, themes } from "./Constants";
 import { dashCaseToPascalCaseWithSpaces } from "../../../Util/StringConversions";
 
 // themes
@@ -43,6 +38,7 @@ import "ace-builds/src-noconflict/snippets/kotlin";
 // ext tools
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/ext-beautify";
+import Logo from "../../../Components/Logo/Logo";
 
 const Header = ({
     fontSize,
@@ -54,12 +50,13 @@ const Header = ({
 }) => {
     return (
         <div className="code-editor-header">
+            <Logo />
             <SelectDropDown
                 value={language}
                 setValue={setLanguage}
                 label="Language"
-                values={languages}
-                mappingFunction={getLanguageDisplayNameFromMode}
+                values={Object.keys(languages)}
+                mappingFunction={(language) => languages[language].name}
             />
             <SelectDropDown
                 value={theme}
@@ -93,13 +90,7 @@ const CodeEditor = ({ handleBodyChange, value }) => {
                 language={language}
                 setLanguage={setLanguage}
             />
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "85vh",
-                }}
-            >
+            <div className="ide">
                 <AceEditor
                     mode={language}
                     theme={theme}
@@ -116,7 +107,7 @@ const CodeEditor = ({ handleBodyChange, value }) => {
                         tabSize: 4,
                         highlightActiveLine: false,
                         hScrollBarAlwaysVisible: false,
-                        useWorker: false
+                        useWorker: false,
                     }}
                     fontSize={fontSize}
                     showPrintMargin={false}

@@ -1,0 +1,9 @@
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: xx-large;
+    gap: 5px;
+    font-weight: bolder;
+    letter-spacing: 3px;
+  }
+  
