@@ -168,24 +168,24 @@ const Console = ({ language, body }) => {
                         <KeyboardArrowUpIcon />
                     )}
                 </Button>
-                {isExpanded && (
-                    <Button
-                        variant={
-                            status === "running" ? "disabled" : "contained"
-                        }
-                        sx={{
-                            backgroundColor: "#23964A",
-                            "&:hover": {
-                                backgroundColor: "#1E7E3C",
-                            },
-                            textTransform: "none",
-                        }}
-                        onClick={handleCodeExecution}
-                    >
-                        Compile and Run
-                        <PlayArrowIcon />
-                    </Button>
-                )}
+                <Button
+                    variant={status === "running" ? "disabled" : "contained"}
+                    sx={{
+                        backgroundColor: "#23964A",
+                        "&:hover": {
+                            backgroundColor: "#1E7E3C",
+                        },
+                        textTransform: "none",
+                    }}
+                    onClick={() => {
+                        setOutputText("Running....");
+                        setIsExpanded(true);
+                        handleCodeExecution();
+                    }}
+                >
+                    Compile and Run
+                    <PlayArrowIcon />
+                </Button>
             </div>
         </div>
     );
