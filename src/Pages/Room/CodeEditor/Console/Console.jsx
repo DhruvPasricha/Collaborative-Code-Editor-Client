@@ -177,10 +177,10 @@ const Console = ({ language, body }) => {
                         },
                         textTransform: "none",
                     }}
-                    onClick={() => {
+                    onClick={async () => {
                         setOutputText("Running....");
                         setIsExpanded(true);
-                        handleCodeExecution();
+                        await handleCodeExecution();
                     }}
                 >
                     Compile and Run
